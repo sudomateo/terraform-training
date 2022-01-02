@@ -1,0 +1,10 @@
+{
+    "resource" : {
+        "aws_key_pair": {
+            "app": {
+                "key_name": "app",
+                "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8"
+            }
+        }
+    }
+}
