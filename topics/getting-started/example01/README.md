@@ -20,4 +20,4 @@ terraform apply
 
 ## Exercises
 
-What happens when you change the value of `World` within `main.tf`?
+What happened when you execute `terraform plan` and `terraform apply` again?
