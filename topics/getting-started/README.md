@@ -29,3 +29,13 @@ Ensure the `terraform` (macOS and Linux) or `terraform.exe` (Windows) binary is 
 ### Graphviz
 
 Terraform can generate a graph of its resources. To visualize this graph, install [Graphviz](https://graphviz.org/). While not a requirement to use Terraform, it helps make use of features provided by `terraform graph`.
+
+## Executing Terraform
+
+At a high level, there are three steps to executing Terraform:
+
+- Initializing the configuration using `terraform init`.
+- Executing a plan using `terraform plan`.
+- Executing an apply using `terraform apply`.
+
+Change into the `example01` directory and execute some Terraform!
