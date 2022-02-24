@@ -2,7 +2,7 @@
 
 ## What is Terraform?
 
-Terraform is a tool that allows you to declaratively define resources as code and perform create, read, update, or delete (CRUD) operations against those resources. Put another way, Terraform is a stateful, declarative wrapper around CRUD APIs.
+Terraform is a tool that allows you to declaratively define resources as code and perform create, read, update, and delete (CRUD) operations against those resources. Put another way, Terraform is a stateful, declarative wrapper around CRUD APIs.
 
 Often, you might hear people refer to Terraform as an "infrastructure as code" tool. While that is true, Terraform is not limited to managing just infrastructure. It can manage any resource that is fronted by a CRUD API, including:
 
@@ -32,8 +32,9 @@ Terraform can generate a graph of its resources. To visualize this graph, instal
 
 ## Executing Terraform
 
-At a high level, there are three steps to executing Terraform:
+Here's the typical flow when executing Terraform:
 
-- Initializing the configuration using `terraform init`.
-- Executing a plan using `terraform plan`.
-- Executing an apply using `terraform apply`.
+- Write Terraform configuration files (`*.tf` files).
+- Initialize the Terraform configuration using `terraform init`.
+- Execute a plan using `terraform plan`.
+- Execute an apply using `terraform apply`.

@@ -20,4 +20,4 @@ terraform apply
 
 ## Exercises
 
-What happens when you change the value of `World`?
+What happens when you change the value of `World` within `main.tf`?
