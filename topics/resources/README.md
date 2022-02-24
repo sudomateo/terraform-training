@@ -39,6 +39,8 @@ Every resource has attributes associated with it. Attributes that you can set ar
 
 In the `aws_instance` example above, `ami` and `instance_type` are attributes. However, since they can both be set in the configuration, they are also known as arguments.
 
+Every attribute is associated with a specific type. We'll cover types more in depth later, but just know that an attribute can be a string, a number, a boolean, etc.
+
 We'll use the term attributes to refer to both attributes and arguments and only make a distinction when necessary.
 
 ## Accessing Resource Attributes
