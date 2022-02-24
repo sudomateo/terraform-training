@@ -37,5 +37,3 @@ At a high level, there are three steps to executing Terraform:
 - Initializing the configuration using `terraform init`.
 - Executing a plan using `terraform plan`.
 - Executing an apply using `terraform apply`.
-
-Change into the `example01` directory and execute some Terraform!
