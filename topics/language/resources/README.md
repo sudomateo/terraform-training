@@ -19,7 +19,7 @@ This resource block declares a resource with:
 - A name of `example_app`.
 - Attributes in the body (within `{` and `}`).
 
-Together, the resource type and name server as an identifier for a resource. As such, they must be unique within a given Terraform module.
+Together, the resource type and name serve as an identifier for a resource. As such, they must be unique within a given Terraform module.
 
 ## Resource Types
 
