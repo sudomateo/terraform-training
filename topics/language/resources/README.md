@@ -1,6 +1,6 @@
 # Resources
 
-Resources represent the objects that Terraform should create, read, update, or delete. Objects such as an AWS EC2 instance, an Azure virtual network, a GitHub repository, a PagerDuty schedule, etc.
+Resources represent the objects that Terraform should create, read, update, or delete. Resources are objects such as an AWS EC2 instance, an Azure virtual network, a GitHub repository, a PagerDuty schedule, etc.
 
 ## Resource Syntax
 
@@ -67,8 +67,25 @@ Some resources have read-only attributes that won't be known until the resource 
 
 ## Resource Dependencies
 
-TODO
+Resources can have implicit, explicit, or no dependencies. By default, resources have no dependencies on other resources.
+
+### Implicit Dependencies
+
+When one resource accesses an attribute from another resource, it creates an implicit dependency between those resources.
+
+### Explicit Dependencies
+
+A resource that uses the `depends_on` meta-argument creates an explicit dependency between itself and on or more resources.
 
 ## Resource Meta-Arguments
 
-TODO
+All resources support the following meta-arguments that are used to change their behavior:
+
+- `depends_on` - Explicitly define dependencies.
+- `count` - Create multiple resources using indices.
+- `for_each` - Create multiple named using keys.
+- `provider` - Select a specific provider to use.
+- `lifecycle` - Customize the lifecycle.
+- `provisioner` - Provision a given resource after creation or destruction.
+
+We'll cover these more in depth later.
