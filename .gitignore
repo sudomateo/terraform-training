@@ -1,5 +1,5 @@
 # Terraform data directories.
-**/.terraform/*
+.terraform/
 
 # Terraform state files.
 *.tfstate
