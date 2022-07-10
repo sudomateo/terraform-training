@@ -34,8 +34,8 @@ with the following background will get the most out of the class:
 ## Preparing for Class
 
 You can prepare for class by performing the following tasks. We will cover
-these in class for those that have not already completed it. Completing these
-tasks before class will leave more time to cover additional material.
+these tasks in class for those that have not already completed them. Completing
+these tasks before class will leave more time to cover additional material.
 
 ### Install Terraform
 
@@ -48,21 +48,19 @@ this graph, install [Graphviz](https://graphviz.org/).
 
 ### Install a Code Editor
 
-#### Visual Studio Code (VS Code)
+Install one of the following code editors:
 
-Download and install [VS Code](https://code.visualstudio.com/).
+- Visual Studio Code (VS Code)
+	- Download and install [VS Code](https://code.visualstudio.com/).
+	- Install the
+	[HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
+	for syntax highlighting and autocompletion.
 
-Install the
-[HashiCorp Terraform extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
-for syntax highlighting and autocompletion.
+- Sublime Text
+	- Download and install [Sublime Text](https://www.sublimetext.com/).
 
-#### Sublime Text
-
-Download and install [Sublime Text](https://www.sublimetext.com/).
-
-#### Vim
-
-Download and install [Vim](https://www.vim.org/download.php).
+- Vim
+	- Download and install [Vim](https://www.vim.org/download.php).
 
 ### Clone the Repository
 
