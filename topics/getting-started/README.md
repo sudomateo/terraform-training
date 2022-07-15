@@ -69,7 +69,7 @@ Once you've found a provider, you're ready to run through the core Terraform
 workflow; Write, Plan, Apply.
 
 ```mermaid
-flowchart TD
+flowchart LR
 	subgraph write [Write]
 	end
 	subgraph plan [Plan]
