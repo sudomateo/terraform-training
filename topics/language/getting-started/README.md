@@ -1,4 +1,4 @@
-# Terraform Training
+# Getting Started
 
 ## What is Terraform?
 

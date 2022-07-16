@@ -81,7 +81,7 @@ resource "aws_instance" "example" {
   ami           = "ami-123456"
   instance_type = "t3.micro"
 
-  // This is also a single-line comment, but using `//` is not preferred.
+  // This is also a single-line comment, but using `//` isn't preferred.
   metadata_options {
     http_endpoint = "enabled"
   }
@@ -148,7 +148,7 @@ comment:
 
 ```json
 {
-  "//": "This line is a comment.",
+  "//": "This is a comment.",
   "resource": [
     {
       "aws_instance": [
