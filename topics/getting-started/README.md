@@ -70,12 +70,9 @@ workflow; Write, Plan, Apply.
 
 ```mermaid
 flowchart LR
-	subgraph write [Write]
-	end
-	subgraph plan [Plan]
-	end
-	subgraph apply [Apply]
-	end
+	write[Write]
+	plan[Plan]
+	apply[Apply]
 
 	write --> plan --> apply
 ```
