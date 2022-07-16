@@ -31,7 +31,7 @@ value or a programmatically generated value.
 Example attribute:
 
 ```hcl
-image_id = "ami-123456"
+image_id = "ami-0cff7528ff583bf9a"
 ```
 
 ### Blocks
@@ -57,7 +57,7 @@ Example block:
 
 ```hcl
 resource "aws_instance" "example" {
-  ami           = "ami-123456"
+  ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 
   metadata_options {
@@ -78,7 +78,7 @@ Use multiple single-line comments instead.
 */
 resource "aws_instance" "example" {
   # This is a single-line comment.
-  ami           = "ami-123456"
+  ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 
   // This is also a single-line comment, but using `//` isn't preferred.
@@ -104,7 +104,7 @@ HCL syntax:
 
 ```hcl
 resource "aws_instance" "example" {
-  ami           = "ami-123456"
+  ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 
   metadata_options {
@@ -123,7 +123,7 @@ JSON syntax:
         {
           "example": [
             {
-              "ami": "ami-123456",
+              "ami": "ami-0cff7528ff583bf9a",
               "instance_type": "t3.micro",
               "metadata_options": [
                 {
@@ -155,7 +155,7 @@ comment:
         {
           "example": [
             {
-              "ami": "ami-123456",
+              "ami": "ami-0cff7528ff583bf9a",
               "instance_type": "t3.micro",
               "metadata_options": [
                 {

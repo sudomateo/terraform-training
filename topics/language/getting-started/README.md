@@ -49,15 +49,15 @@ version control, you'll never wonder who or what created infrastructure again.
 
 ## How Does Terraform Work?
 
-Terraform communicates with upstream CRUD APIs using a special type of plugin
-known as a provider. Providers allow Terraform to create, read, update, or
-delete infrastructure.
+Terraform communicates with upstream APIs using a special type of plugin known
+as a provider. Providers allow Terraform to create, read, update, or delete
+infrastructure.
 
 ```mermaid
 flowchart LR
 	cli[Terraform CLI]
 	plugin[Terraform Provider]
-	api[CRUD API]
+	api[API]
 
 	cli <--> plugin <--> api
 ```
@@ -66,7 +66,7 @@ There are many providers written for Terraform. You can search for providers on
 the [Terraform Registry](https://registry.terraform.io/).
 
 Once you've found a provider, you're ready to run through the core Terraform
-workflow; Write, Plan, Apply.
+workflow; write, plan, and apply.
 
 ```mermaid
 flowchart LR
