@@ -1,6 +1,10 @@
 # Core Workflow
 
-The core Terraform workflow is write, plan, and apply.
+The core Terraform workflow has three steps:
+
+1. Write - Create Terraform configuration.
+1. Plan - Preview changes before applying.
+1. Apply - Provision infrastructure.
 
 ```mermaid
 flowchart LR
