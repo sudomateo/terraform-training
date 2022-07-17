@@ -4,6 +4,8 @@ Resources are the objects that Terraform should create, read, update, or delete
 such as an AWS EC2 instance, an Azure virtual network, a GitHub repository, a
 PagerDuty schedule, etc.
 
+Providers offer different resources for use.
+
 ## Defining Resources
 
 Resources are defined inside resource blocks.
@@ -18,8 +20,8 @@ resource "aws_instance" "example" {
 The resource block expects two labels; the resource type (`aws_instance`) and
 the resource name (`example`).
 
-Together, the resource type and resource name serve as unique identifier for a
-resource.
+Together, the resource type and resource name serve as a unique identifier for
+a resource.
 
 ## Resource Types
 
