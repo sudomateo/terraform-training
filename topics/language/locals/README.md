@@ -12,7 +12,10 @@ Locals are defined inside locals blocks.
 
 ```hcl
 locals {
-  ssh_info = "ssh ubuntu@${aws_instance.app.public_ip}"
+  required_tags = {
+    Owner       = "Engineering",
+    Environment = "Development",
+  }
 }
 ```
 
@@ -27,15 +30,15 @@ Local values can be accessed using the syntax `local.NAME`.
 
 ```hcl
 locals {
-  ssh_info = "ssh ubuntu@${aws_instance.app.public_ip}"
+  required_tags = {
+    Owner       = "Engineering",
+    Environment = "Development",
+  }
 }
 
 resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = var.instance_type
-}
-
-output "ssh_info" {
-  value = local.ssh_info
+  tags          = local.required_tags
 }
 ```
