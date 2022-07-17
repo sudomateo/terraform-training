@@ -11,7 +11,7 @@ You can search for providers on the
 ## Requiring Providers
 
 Once you've found a provider, you'll have to require it in your Terraform
-configuration.
+configuration in order to use it.
 
 ```hcl
 terraform {
@@ -68,7 +68,7 @@ resource "aws_instance" "example" {
 To use an aliased provider within a resource, pass in the `provider` attribute.
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "example_secondary" {
   provider      = aws.secondary
   ami           = "ami-0d9858aa3c6322f73"
   instance_type = "t3.micro"
