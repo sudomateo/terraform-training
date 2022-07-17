@@ -36,7 +36,7 @@ Like resource types, data source types follow the syntax `PROVIDER_DATASOURCE`.
 The `aws_ami` data source type refers to the `ami` data source within the `aws`
 provider.
 
-## Arguments vs. Attributes
+## Attributes vs. Arguments
 
 Like resources, every data source has attributes associated with it that differ
 depending on the data source type.
