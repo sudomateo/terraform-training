@@ -99,7 +99,6 @@ Use `depends_on` to create a resource dependency that Terraform cannot infer.
 resource "aws_instance" "db" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
-  key_name      = aws_key_pair.user.id
 }
 
 resource "aws_instance" "app" {
@@ -109,7 +108,6 @@ resource "aws_instance" "app" {
 
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
-  key_name      = aws_key_pair.user.id
 }
 ```
 
