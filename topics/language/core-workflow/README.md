@@ -31,8 +31,8 @@ terraform {
   }
 }
 
-# AWS credentials are read from the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-# environment variables to prevent leaking secrets.
+# AWS credentials are read from the AWS CLI or environment variables to prevent
+# leaking secrets.
 provider "aws" {
   region = "us-east-1"
 }
