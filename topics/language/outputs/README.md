@@ -11,13 +11,13 @@ Outputs must be defined before they will be exposed.
 Outputs are defined inside output blocks.
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 }
 
 output "instance_id" {
-  value = aws_instance.example.id
+  value = aws_instance.app.id
 }
 ```
 

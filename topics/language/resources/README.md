@@ -11,14 +11,14 @@ Providers offer different resources for use.
 Resources are defined inside resource blocks.
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 }
 ```
 
 The resource block expects two labels; the resource type (`aws_instance`) and
-the resource name (`example`).
+the resource name (`app`).
 
 Together, the resource type and resource name serve as a unique identifier for
 a resource.
@@ -56,7 +56,7 @@ resource "aws_key_pair" "user" {
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8"
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
   key_name      = aws_key_pair.user.id
@@ -84,7 +84,7 @@ resource "aws_key_pair" "user" {
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8"
 }
 
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
   key_name      = aws_key_pair.user.id
@@ -96,16 +96,16 @@ resource "aws_instance" "example" {
 Use `depends_on` to create a resource dependency that Terraform cannot infer.
 
 ```hcl
-resource "aws_instance" "db" {
-  ami           = "ami-0cff7528ff583bf9a"
-  instance_type = "t3.micro"
-}
-
 resource "aws_instance" "app" {
   depends_on = [
     aws_instance.db
   ]
 
+  ami           = "ami-0cff7528ff583bf9a"
+  instance_type = "t3.micro"
+}
+
+resource "aws_instance" "db" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 }

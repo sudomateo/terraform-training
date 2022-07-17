@@ -59,7 +59,7 @@ Resources that do not specify a provider will use the default, or unaliased,
 provider.
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 }
@@ -68,7 +68,7 @@ resource "aws_instance" "example" {
 To use an aliased provider within a resource, pass in the `provider` attribute.
 
 ```hcl
-resource "aws_instance" "example_secondary" {
+resource "aws_instance" "app_secondary" {
   provider      = aws.secondary
   ami           = "ami-0d9858aa3c6322f73"
   instance_type = "t3.micro"

@@ -56,7 +56,7 @@ Blocks can have zero or more `LABEL`s depending on the `TYPE`.
 Example block:
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 
@@ -76,7 +76,7 @@ This is a multi-line comment.
 Multi-line comments aren't preferred.
 Use multiple single-line comments instead.
 */
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   # This is a single-line comment.
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
@@ -103,7 +103,7 @@ syntax would look like if converted to JSON syntax.
 HCL syntax:
 
 ```hcl
-resource "aws_instance" "example" {
+resource "aws_instance" "app" {
   ami           = "ami-0cff7528ff583bf9a"
   instance_type = "t3.micro"
 
@@ -121,7 +121,7 @@ JSON syntax:
     {
       "aws_instance": [
         {
-          "example": [
+          "app": [
             {
               "ami": "ami-0cff7528ff583bf9a",
               "instance_type": "t3.micro",
@@ -153,7 +153,7 @@ comment:
     {
       "aws_instance": [
         {
-          "example": [
+          "app": [
             {
               "ami": "ami-0cff7528ff583bf9a",
               "instance_type": "t3.micro",
