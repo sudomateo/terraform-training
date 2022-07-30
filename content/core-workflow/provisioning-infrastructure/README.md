@@ -51,7 +51,7 @@ terraform init
 ```
 
 This initialization output shows that Terraform successfully initialized the
-configuration and downloaded the `aws` provider.
+configuration and downloaded the `hashicorp/aws` provider.
 
 ```
 Initializing the backend...
@@ -93,7 +93,7 @@ Terraform will perform the following actions:
       + ami                                  = "ami-052efd3df9dad4825"
       + arn                                  = (known after apply)
       + instance_type                        = "t3.micro"
-	  ...
+      ...
       + tags                                 = {
           + "Environment" = "Development"
           + "Name"        = "app"
