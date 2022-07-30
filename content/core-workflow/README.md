@@ -20,3 +20,4 @@ flowchart LR
 ## Outline
 
 - [Configuration Syntax](configuration-syntax)
+- [Provisioning Infrastructure](provisioning-infrastructure)
