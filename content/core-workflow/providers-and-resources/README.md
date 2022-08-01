@@ -108,6 +108,21 @@ The `aws_instance` resource type refers to the `instance` resource within the
 `aws` provider. Similarly, the `azurerm_linux_virtual_machine` resource type
 refers to the `linux_virtual_machine` resource within the `azurerm` provider.
 
+### Attributes vs. Arguments
+
+Every resource has attributes associated with it that differ depending on the
+resource type.
+
+Attributes that you can set are called arguments. Attributes that you cannot
+set are called read-only attributes. The documentation for a resource details
+which attributes are arguments and which attributes are read-only attributes.
+
+Some attributes will not be known until after a resource is created. For
+example, an instance's ID.
+
+We'll use the term attributes to refer to both read-only attributes and
+arguments and only make a distinction when necessary.
+
 ### Meta-Arguments
 
 All resources support the following meta-arguments that can be used to
