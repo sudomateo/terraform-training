@@ -88,7 +88,7 @@ resource "aws_instance" "app" {
   instance_type = "t3.micro"
 
   tags = {
-    Name = "app"
+    Name        = "app"
     Environment = "Development"
   }
 }
