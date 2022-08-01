@@ -21,3 +21,4 @@ flowchart LR
 
 - [Configuration Syntax](configuration-syntax)
 - [Provisioning Infrastructure](provisioning-infrastructure)
+- [Providers and Resources](providers-and-resources)
