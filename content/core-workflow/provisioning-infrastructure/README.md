@@ -29,7 +29,7 @@ resource "aws_instance" "app" {
   instance_type = "t3.micro"
 
   tags = {
-    Name = "app"
+    Name        = "app"
     Environment = "Development"
   }
 }
@@ -91,7 +91,7 @@ Terraform will perform the following actions:
   # aws_instance.app will be created
   + resource "aws_instance" "app" {
       + ami                                  = "ami-052efd3df9dad4825"
-      + arn                                  = (known after apply)
+      + id                                   = (known after apply)
       + instance_type                        = "t3.micro"
       ...
       + tags                                 = {
