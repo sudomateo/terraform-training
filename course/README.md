@@ -5,9 +5,9 @@
 Install Terraform and familiarize yourself with your cloud provider.
 
 - What is Terraform?
-- How does Terraform work?
-- Why use Terraform?
-- Terraform Installation
+- How Does Terraform work?
+- Why Use Terraform?
+- Installing Terraform
 - Editor Configuration
 - Cloud Provider Configuration
 
@@ -36,7 +36,7 @@ Use all of the top-level configuration keywords in Terraform.
 
 Use Provisioners to extend Terraform with imperative workflows.
 
-- What are Provisioners?
+- What Are Provisioners?
 - Declaring Provisioners
 - The `local-exec` Provisioner
 - The `remote-exec` Provisioner

@@ -10,7 +10,7 @@ In this section, you will learn how to do the following:
 - Understand the different variable types.
 - Pass variable values using CLI options, variable files, and environment variables.
 - Output information about your managed infrastructure.
-- Create an abstraction for complex operations using local variables.
+- Use locals to create an abstraction for complex operations.
 
 ## Providers
 
@@ -18,14 +18,14 @@ Providers are plugins that Terraform uses to communicate with upstream APIs.
 
 ```mermaid
 flowchart LR
-	core[Terraform Core]
-	provider[Terraform Provider]
-	sdk[Client SDK]
-	api[Target API]
+    core[Terraform Core]
+    provider[Terraform Provider]
+    sdk[Client SDK]
+    api[Target API]
 
-	core <-- RPC --> provider
-	provider <-- Go --> sdk
-	sdk <-- "HTTP(S)" --> api
+    core <-- RPC --> provider
+    provider <-- Go --> sdk
+    sdk <-- "HTTP(S)" --> api
 ```
 
 ### Finding Providers
@@ -35,8 +35,8 @@ Providers can be found on the
 
 ### Requiring Providers
 
-Once you've found a provider, require it in your Terraform configuration in
-order to use it.
+Once you've found a provider, it must be required in your Terraform
+configuration in order to use it.
 
 ```hcl
 terraform {
@@ -58,7 +58,9 @@ and any other information a provider needs to successfully function.
 Providers are configured using `provider` blocks.
 
 ```hcl
-provider "aws" {}
+provider "aws" {
+  region  = "us-east-1"
+}
 ```
 
 ### Aliasing Providers
@@ -68,11 +70,13 @@ alias. This is useful when you want to use the same provider in slightly
 different ways, such as supporting multiple regions for a cloud platform.
 
 ```hcl
-provider "aws" {}
+provider "aws" {
+  region  = "us-east-1"
+}
 
 provider "aws" {
   alias  = "secondary"
-  region = "us-west-1"
+  region = "us-west-2"
 }
 ```
 
@@ -86,7 +90,7 @@ resource "aws_instance" "app" {
 }
 ```
 
-To use an aliased provider within a resource, pass in the `provider` attribute.
+Set the `provider` attribute to use an aliased provider within a resource.
 
 ```hcl
 resource "aws_instance" "app" {
@@ -121,7 +125,7 @@ resource name (`app`).
 Together, the resource type and resource name serve as a unique identifier for
 a resource.
 
-```
+```text
 aws_instance.app
 ```
 
@@ -179,7 +183,7 @@ Resources support the following meta-arguments that can be used to change their
 behavior:
 
 - `depends_on` - Define explicit dependencies.
-- `count` - Create multiple resources using indices.
+- `count` - Create multiple resources using indexes.
 - `for_each` - Create multiple resources using uniquely named keys.
 - `provider` - Use a specific aliased provider.
 - `lifecycle` - Customize the resource lifecycle.
@@ -233,7 +237,8 @@ resource "aws_instance" "app" {
 ## Data Sources 
 
 Data sources are a special kind of Terraform resource that reads information
-and exposes that information for use within your Terraform configuration.
+from the target API and exposes that information for use within your Terraform
+configuration.
 
 Each provider declares which data sources it supports.
 
@@ -265,7 +270,7 @@ source name (`ubuntu`).
 Together, the `data` prefix, the data source type, and the data source name
 serve as a unique identifier for a data source.
 
-```hcl
+```text
 data.aws_ami.ubuntu
 ```
 
@@ -336,7 +341,7 @@ variable "ssh_public_key" {}
 Together, the `var` prefix and the variable name serve as a unique identifier
 for a variable.
 
-```hcl
+```text
 var.ssh_public_key
 ```
 
@@ -477,7 +482,7 @@ environment variables.
 Terraform will prompt for required variables when they are not provided by other
 means.
 
-```
+```sh
 > terraform plan
 var.ssh_public_key
   Enter a value:
@@ -487,7 +492,7 @@ var.ssh_public_key
 
 Use the `-var` CLI option to pass a value to a variable.
 
-```
+```sh
 > terraform plan -var='ssh_public_key=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8'
 data.aws_ami.ubuntu: Reading...
 data.aws_ami.ubuntu: Read complete after 0s [id=ami-0aa2b7722dc1b5612]
@@ -521,7 +526,7 @@ Plan: 3 to add, 0 to change, 0 to destroy.
 Variable values can be specified in variable files. Variable files have the
 file extension `.tfvars` for HCL and `tfvars.json` for JSON.
 
-```
+```sh
 > cat myvars.tfvars
 ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8"
 
@@ -567,7 +572,7 @@ The following variable files are automatically loaded by Terraform:
 Variable values can be read from environment variables in the format
 `TF_VAR_NAME` where `NAME` is the variable name.
 
-```
+```sh
 > export TF_VAR_ssh_public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8"
 
 > terraform plan
@@ -633,7 +638,7 @@ Outputs accept the following arguments:
 
 Output values can be viewed after Terraform configuration is applied.
 
-```
+```sh
 > terraform apply
 ...
 Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
@@ -645,14 +650,14 @@ ssh_info = "ssh -l ubuntu 3.88.231.80"
 
 Outputs can also be viewed using `terraform output`.
 
-```
+```sh
 > terraform output
 ssh_info = "ssh -l ubuntu 3.88.231.80"
 ```
 
 Pass the `-json` CLI argument to view an output in JSON format.
 
-```
+```sh
 > terraform output -json
 {
   "ssh_info": {
@@ -665,9 +670,9 @@ Pass the `-json` CLI argument to view an output in JSON format.
 
 ## Locals
 
-Locals let you assign a name to an expression. This allows you to use that name
-instead of repeating a potentially complex expression multiple times. Locals
-are similar to temporary variables within functions.
+Use locals to assign a name to an expression. This allows you to use that name
+instead of repeating a potentially complex expression multiple times. Locals are
+similar to temporary variables within functions.
 
 Locals must be defined before they can be used.
 

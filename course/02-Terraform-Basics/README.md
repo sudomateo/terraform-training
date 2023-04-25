@@ -2,7 +2,7 @@
 
 In this section, you will learn how to do the following:
 
-- Read Terraform configuration written in HCL and JSON.
+- Learn the Terraform configuration syntax.
 - Describe the core Terraform workflow.
 - Provision, modify, and destroy infrastructure using the core Terraform workflow.
 - Describe the purpose of Terraform state.
@@ -26,7 +26,7 @@ HCL is built around two concepts; attributes and blocks.
 
 #### Attributes
 
-An attribute assigns the value of an `EXPRESSION` to a particular `IDENTIFIER`:
+An attribute assigns the value of an `EXPRESSION` to an `IDENTIFIER`:
 
 ```hcl
 IDENTIFER = EXPRESSION
@@ -133,7 +133,7 @@ Here's what the above HCL Terraform configuration looks like in JSON.
 
 #### JSON Comments
 
-JSON syntax supports a limited form of comments by using a `//` attribute.
+JSON syntax supports a limited form of comments using the `//` attribute.
 
 ```json
 {
@@ -162,21 +162,21 @@ JSON syntax supports a limited form of comments by using a `//` attribute.
 
 ## The Core Workflow
 
-The core workflow has three steps:
+The core Terraform workflow has three steps:
 
-1. **Write** - Author infrastructure as code.
+1. **Write** - Author infrastructure as code file(s).
 1. **Plan** - Preview changes before applying.
 1. **Apply** - Provision reproducible infrastructure.
 
 ```mermaid
 flowchart LR
-	write[Write]
-	plan[Plan]
-	apply[Apply]
+    write[Write]
+    plan[Plan]
+    apply[Apply]
 
-	write --> plan --> apply
-	plan -.-> write
-	apply -.-> plan & write
+    write --> plan --> apply
+    plan -.-> write
+    apply -.-> plan & write
 ```
 
 ### Write
@@ -213,7 +213,7 @@ The initialization process:
 - Downloads provider plugins.
 - Downloads modules.
 
-```
+```sh
 > terraform init
 
 Initializing the backend...
@@ -231,7 +231,7 @@ Terraform has been successfully initialized!
 Once your configuration is written and initialized, generate an execution plan
 to preview the changes that Terraform plans to make to your infrastructure.
 
-```
+```sh
 > terraform plan
 Terraform used the selected providers to generate the following execution plan. Resource actions are
 indicated with the following symbols:
@@ -258,7 +258,7 @@ configuration and generate a new execution plan.
 Once you're satisfied with the execution plan, tell Terraform to provision your
 infrastructure.
 
-```
+```sh
 > terraform apply
 Terraform used the selected providers to generate the following execution plan. Resource actions are
 indicated with the following symbols:
@@ -279,7 +279,7 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 Terraform will prompt for confirmation before provisioning your infrastructure.
 
-```
+```sh
 > terraform apply
 ...
 Do you want to perform these actions?
@@ -297,16 +297,39 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ## Modifying Infrastructure
 
-Spinning up an instance is great, but we still don't have a way to connect to
-it and use it. Let's add an SSH key and update the security group rules so that
-we can connect to the instance.
+Spinning up an instance is great, but we still don't have a way to connect to it
+and use it. Let's add an SSH key and a security group so that we can connect to
+the instance.
 
 ### Adding an SSH Key
 
 Generate an SSH key if you don't already have one.
 
-```
-ssh-keygen -t ed25519
+```sh
+> ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/sudomateo/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /tmp/id_ed25519
+Your public key has been saved in /tmp/id_ed25519.pub
+The key fingerprint is:
+SHA256:BxeIGr5BI3JMSCfzwrGFnYx9zlNUltfr8PoEzwHYL9g sudomateo@vm-fedora
+The key's randomart image is:
++--[ED25519 256]--+
+|.OBo. .o.+o .    |
+|+o%=+...o.oo .   |
+| * =++. ..oo  .  |
+|  . ++   oo.o.   |
+|     o. S..E+o   |
+|    .    .  =o.  |
+|            .+   |
+|           ..    |
+|            ..   |
++----[SHA256]-----+
+
+> cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETEma9o59PQm3venxMkocCM8mifE0hspFm5XsYeccw8
 ```
 
 Update your `main.tf` to create an `aws_key_pair` resource using your
@@ -328,7 +351,7 @@ resource "aws_key_pair" "app" {
 Generate an execution plan to see that Terraform must replace your instance in
 order to add an SSH key pair to it.
 
-```
+```sh
 > terraform plan
 aws_instance.app: Refreshing state... [id=i-0175015733497c376]
 
@@ -365,7 +388,7 @@ Plan: 2 to add, 0 to change, 1 to destroy.
 Apply your configuration to destroy your existing instance and create a new one
 with your SSH key pair attached.
 
-```
+```sh
 > terraform apply
 ...
 Do you want to perform these actions?
@@ -401,10 +424,10 @@ inbound SSH traffic and all outbound traffic.
 
 ```hcl
 resource "aws_instance" "app" {
-  ami             = "ami-007855ac798b5175e"
-  instance_type   = "t3.micro"
-  key_name        = aws_key_pair.app.key_name
-  security_groups = [aws_security_group.app.id]
+  ami                    = "ami-007855ac798b5175e"
+  instance_type          = "t3.micro"
+  key_name               = aws_key_pair.app.key_name
+  vpc_security_group_ids = [aws_security_group.app.id]
 }
 
 resource "aws_key_pair" "app" {
@@ -438,7 +461,7 @@ resource "aws_security_group" "app" {
 Generate an execution plan to see that Terraform can add the security group to
 your instance without replacing it.
 
-```
+```sh
 > terraform plan
 aws_key_pair.app: Refreshing state... [id=app]
 aws_instance.app: Refreshing state... [id=i-0622e87ff82113b1b]
@@ -514,7 +537,7 @@ Plan: 1 to add, 1 to change, 0 to destroy.
 
 Apply your configuration to update the firewall rules for the instance.
 
-```
+```sh
 > terraform apply
 ...
 Do you want to perform these actions?
@@ -536,7 +559,7 @@ Apply complete! Resources: 1 added, 1 changed, 0 destroyed.
 Retrieve your instance's public IP address from the console and use it to
 connect via SSH.
 
-```
+```sh
 > ssh -l ubuntu 3.239.242.146
 The authenticity of host '3.239.242.146 (3.239.242.146)' can't be established.
 ED25519 key fingerprint is SHA256:4eB5oXAlb8BEldrMyOmxo2wCTA2h18DQYuNY2Usb4wM.
@@ -823,8 +846,7 @@ Here's what a state file looks like.
 
 ### Purpose of Terraform State
 
-Terraform state is necessary for Terraform to function. The state is necessary
-for the following reasons.
+Terraform state is necessary for the following reasons.
 
 - **Mapping Configuration to Reality** - Many resources have unique identifiers
   won't be known until after the resource is created. These identifiers are
@@ -849,10 +871,10 @@ for the following reasons.
 
 ## Destroying Infrastructure
 
-When infrastructure is no longer needed, it can be destroyed. Terraform
-supports destroying specific infrastructure or all of the infrastructure it
-manages. You can also create a speculative destroy plan to see what the effect
-of destroying infrastructure would be without actually destroying anything.
+Infrastructure can be destroyed with it is no longer needed. Terraform supports
+destroying specific infrastructure or all of the infrastructure it manages. You
+can also create a speculative destroy plan to see what the effect of destroying
+infrastructure would be without actually destroying anything.
 
 ### Destroying Specific Infrastructure
 
@@ -909,7 +931,7 @@ provider "aws" {}
 Apply your configuration to have Terraform detect that the resources you removed
 are no longer needed and prompt to destroy them.
 
-```
+```sh
 > terraform apply
 aws_key_pair.app: Refreshing state... [id=app]
 aws_security_group.app: Refreshing state... [id=sg-0011d245db351c0f5]
@@ -1050,7 +1072,7 @@ To destroy all infrastructure managed by Terraform, run a destroy operation.
 The `terraform destroy` command is just an alias for `terraform apply
 -destroy`.
 
-```
+```sh
 > terraform destroy
 aws_key_pair.app: Refreshing state... [id=app]
 aws_security_group.app: Refreshing state... [id=sg-0011d245db351c0f5]
@@ -1147,7 +1169,7 @@ Do you really want to destroy all resources?
 You can execute a speculative destroy plan to see what resources Terraform
 would destroy without actually destroying them.
 
-```
+```sh
 > terraform plan -destroy
 aws_key_pair.app: Refreshing state... [id=app]
 aws_security_group.app: Refreshing state... [id=sg-0011d245db351c0f5]

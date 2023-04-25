@@ -3,16 +3,16 @@
 In this section, you will learn how to do the following:
 
 - Describe what provisioners are and when to use them.
-- Use the `local-exec`, `remote-exec` and `file` provisioners.
-- Use the `null_resource` to execute provisioners without a resource.
+- Use the `local-exec`, `remote-exec`, and `file` provisioners.
+- Use the `null_resource` resource to execute provisioners without a resource.
 - Describe alternatives to provisioners.
 
-## What are Provisioners?
+## What Are Provisioners?
 
 Provisioners are used to extend Terraform by executing processes on the local
-machine running Terraform or on the remote resource provisioned by Terraform.
+machine running Terraform or on remote hosts provisioned by Terraform.
 
-### Provisioners are a last resort
+### Provisioners Are a Last Resort
 
 Terraform's declarative model works well with managing immutable
 infrastructure. However, some infrastructure requires a more imperative
@@ -139,9 +139,10 @@ resource "aws_instance" "app" {
 
   provisioner "remote-exec" {
     connection {
-      type = "ssh"
-      user = "ubuntu"
-      host = self.ipv4_address
+      type        = "ssh"
+      user        = "ubuntu"
+      host        = self.public_ip
+      private_key = file("~/.ssh/id_ed25519")
     }
 
     inline = [
@@ -167,9 +168,10 @@ resource "aws_instance" "app" {
 
   provisioner "file" {
     connection {
-      type = "ssh"
-      user = "ubuntu"
-      host = self.ipv4_address
+      type        = "ssh"
+      user        = "ubuntu"
+      host        = self.public_ip
+      private_key = file("~/.ssh/id_ed25519")
     }
 
     content     = "log_level = info"
@@ -178,7 +180,7 @@ resource "aws_instance" "app" {
 }
 ```
 
-## Provisioners without a resource
+## Provisioners Without a Resource
 
 If you need to execute provisioners but don't have a resource to associate the
 provisioner with, you can associate the resource with a `null_resource`.
@@ -187,6 +189,16 @@ All `null_resource` resources are treated like normal resources but they don't
 actually provision any real infrastructure.
 
 ```hcl
+terraform {
+  required_providers {
+    # ...
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.0"
+    }
+  }
+}
+
 resource "null_resource" "null" {
   provisioner "local-exec" {
     command = "script.sh"

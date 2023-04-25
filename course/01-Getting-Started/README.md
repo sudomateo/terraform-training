@@ -18,12 +18,12 @@ another way, Terraform is a stateful, declarative wrapper around CRUD APIs.
 Terraform is often referred to as an "infrastructure as code" tool. While that
 is true, Terraform is not limited to managing just infrastructure. It can manage
 any resource that is fronted by a CRUD API, including AWS, Azure, GCP resources,
-Kubernetes deployments, GitHub repositories, etc.
+Kubernetes deployments, GitHub repositories, VMware virtual machines, etc.
 
-## How does Terraform work?
+## How Does Terraform Work?
 
 Terraform communicates with upstream APIs using a special type of plugin known
-as a provider. Providers allow Terraform to create, read, update, or delete
+as a provider. Providers allow Terraform to create, read, update, and delete
 infrastructure.
 
 ```mermaid
@@ -41,7 +41,7 @@ the [Terraform Registry](https://registry.terraform.io/).
 Once you've found a provider, you're ready to create your first Terraform
 configuration.
 
-## Why use Terraform?
+## Why Use Terraform?
 
 If you've ever manually created resources by clicking around in a user
 interface, you'll know that the process is time consuming and error prone.
@@ -51,8 +51,7 @@ Terraform provides the following benefits to address these concerns.
   Terraform works to make that a reality. You no longer need to write complex
   step-by-step operations to ensure your infrastructure is correctly
   provisioned. Terraform builds a resource graph to determine resource
-  dependencies and creates or modifies non-dependent resources in parallel,
-  saving you time.
+  dependencies and creates or modifies non-dependent resources in parallel.
 
 - **Idempotent** - Terraform detects when infrastructure needs modification and
   will only modify infrastructure that needs modification. Assuming
@@ -73,12 +72,11 @@ Terraform provides the following benefits to address these concerns.
 
 - **Agnostic** - Terraform utilizes its own configuration language to provide
   the same experience across infrastructure providers. You use the same
-  configuration language to manage infrastructure AWS, GCP, and Azure
-  infrastructure.
+  configuration language to manage AWS, GCP, and Azure infrastructure.
 
-## Terraform Installation
+## Installing Terraform
 
-This course requires Terraform 1.3 or later.
+This course requires Terraform 1.4 or later.
 
 Download and install
 [Terraform](https://developer.hashicorp.com/terraform/downloads).
@@ -86,25 +84,25 @@ Download and install
 To validate your Terraform installation, open a terminal and run `terraform
 version`.
 
-```
+```sh
 > terraform version
 Terraform v1.4.5
 on linux_amd64
 ```
 
-### Install Go
+### Installing Go
 
 Terraform and its providers are written in Go. To compile Terraform and its
 providers, download and install [Go](https://go.dev/doc/install).
 
 To validate your Go installation, open a terminal and run `go version`.
 
-```
+```sh
 > go version
 go version go1.20.3 linux/amd64
 ```
 
-### (Optional) Install Graphviz
+### (Optional) Installing Graphviz
 
 Terraform can generate a graph of its configuration. If you'd like to visualize
 this graph, install [Graphviz](https://graphviz.org/).
@@ -142,7 +140,7 @@ one.
 > **Warning**
 > You are responsible for any charges that you may incur.
 
-### Install the AWS CLI
+### Installing the AWS CLI
 
 We'll use the AWS CLI to securely store our AWS API credentials and query the
 AWS API directly.
@@ -151,7 +149,7 @@ Download and install the [AWS CLI](https://aws.amazon.com/cli/).
 
 To validate your AWS CLI installation, open a terminal and run `aws --version`.
 
-```
+```sh
 > aws --version
 aws-cli/2.11.13 Python/3.11.3 Linux/6.2.10-200.fc37.x86_64 exe/x86_64.fedora.37 prompt/off
 ```
@@ -165,10 +163,11 @@ To generate AWS API credentials:
 1. Navigate to the
   [IAM service](https://console.aws.amazon.com/iamv2/home) in the AWS console.
 1. Create a new IAM user.
+1. Give this IAM user the `AdministratorAccess` policy.
 1. Generate API credentials for this IAM user.
 1. Configure the AWS CLI to use these API credentials.
 
-    ```
+    ```sh
     > aws configure
     AWS Access Key ID [None]: AKIA****************
     AWS Secret Access Key [None]: 5g40************************************
@@ -178,7 +177,7 @@ To generate AWS API credentials:
 
 1. Confirm you can communicate with AWS.
 
-    ```
+    ```sh
     > aws sts get-caller-identity
     {
         "UserId": "AIDA*****************",
