@@ -508,7 +508,7 @@ bar/.terraform/providers
 Using this cache directory can be useful for a long running CI/CD runner that
 executes Terraform commands.
 
-The other configuration that's worth noting is the `provider_installaion`
+The other configuration that's worth noting is the `provider_installation`
 configuration. With it, Terraform will use providers from the filesystem mirror
 assuming they follow a specific layout.
 
